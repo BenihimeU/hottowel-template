@@ -1,5 +1,7 @@
-# prowness
+# This is a general template for staring angular 1.x project with ng-stat
+It's simplified version of hottowel generator code.
 
+## Parent generator
 **Generated from HotTowel Angular**
 
 >*Opinionated Angular style guide for teams by [@john_papa](//twitter.com/john_papa)*
