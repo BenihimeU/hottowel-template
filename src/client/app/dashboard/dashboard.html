@@ -1,0 +1,52 @@
+<section id="dashboard-view">
+  <section class="matter">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div angular-stats watch-count=".watch-count" digest-length=".digest-length"
+             on-watch-count-update="onWatchCountUpdate(watchCount)"
+             on-digest-length-update="onDigestLengthUpdate(digestLength)">
+            Watch Count: <span class="watch-count"></span><br />
+            Digest Cycle Length: <span class="digest-length"></span>
+        </div>
+
+
+        <div class="col-xs-12 hidden-inline-xs">
+          <div class="widget wviolet">
+            <div ht-widget-header title="Notifications" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+               <uib-accordion close-others="true" class='custom-accordion'>
+                  <div uib-accordion-group class="panel-default" ng-repeat="notification in vm.notifications">
+                    <uib-accordion-heading>
+                        <span ng-if="notification.type === 'image'" class="glyphicon glyphicon-picture thumbline" aria-hidden="true"></span>
+                        <span ng-if="notification.type === 'text'" class="glyphicon glyphicon-font thumbline" aria-hidden="true"></span>
+                        <span ng-if="notification.type === 'link'" class="glyphicon glyphicon-link thumbline" aria-hidden="true"></span>
+                        <span class="listTitle">{{::notification.name || notification.type}}</span>
+                        <span class="col-xs-3 pull-right">
+                        <button type="button" class="btn customBtn" aria-label="Delete" ng-click="vm.deletePressed($event,notification,$index)">
+                          <span class="glyphicon glyphicon-trash action-thumbline" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn customBtn" aria-label="Pin" ng-click="vm.pinPressed($event,notification,$index)">
+                          <span class="glyphicon glyphicon-pushpin action-thumbline" aria-hidden="true"></span>
+                        </button>
+                    </uib-accordion-heading>
+                      <div class="timestamp"><strong>Time Stamp</strong>: {{::vm.formatTimeStamp(notification.timestamp)}}</div>
+                      <image-card ng-if="notification.type === 'image'" image='notification'></image-card>
+                      <text-card ng-if="notification.type === 'text'" text='notification'></text-card>
+                      <link-card ng-if="notification.type === 'link'" link-data='notification'></link-card>
+                      <div class="pull-right">
+                        <button type="button" class="btn btn-secondary customFullBtn" ng-click="vm.deletePressed($event,notification,$index)">Delete</button>
+                        <button type="button" class="btn btn-secondary customFullBtn" ng-click="vm.pinPressed($event,notification,$index)">Pin</button>
+                      </div>
+                  </div>
+                </uib-accordion>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

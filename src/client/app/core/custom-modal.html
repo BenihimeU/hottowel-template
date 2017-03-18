@@ -1,0 +1,21 @@
+<div class="custom-modal">
+<div class="modal-header">
+  <button type="button" class="close" ng-click="vm.cancel()" data-dismiss="modal" aria-hidden="true">&times;</button>
+  	<span ng-if="vm.notification.type === 'image'" class="glyphicon glyphicon-picture thumbline" aria-hidden="true"></span>
+  	<span ng-if="vm.notification.type === 'text'" class="glyphicon glyphicon-font thumbline" aria-hidden="true"></span>
+  	<span ng-if="vm.notification.type === 'link'" class="glyphicon glyphicon-link thumbline" aria-hidden="true"></span>
+  <span class="modal-title listTitle" id="modal-title">{{::vm.notification.name || vm.notification.type}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+  <div class="content-body">
+  	<div class="timestamp">{{::vm.notification.timestamp | date:'yyyy.MM.dd hh.mm a'}}</div>
+    <image-card ng-if="vm.notification.type === 'image'" image='vm.notification'></image-card>
+    <text-card ng-if="vm.notification.type === 'text'" text='vm.notification'></text-card>
+    <link-card ng-if="vm.notification.type === 'link'" link='vm.notification'></link-card>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="vm.ok()">Delete</button>
+  <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Pin</button>
+</div>
+</div>
